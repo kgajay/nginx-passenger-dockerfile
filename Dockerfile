@@ -95,11 +95,14 @@ RUN echo "*******************"
 
 RUN set +x
 
+############### COPY YOUR GEMFILE AND INSTALL GEM #########################
 WORKDIR /usr/src/scripts
 COPY Gemfile* /usr/src/scripts/
 RUN bundle install
 RUN rm -f /usr/src/scripts/Gemfile*
+############### COPY YOUR GEMFILE AND INSTALL GEM #########################
 
+############### COPY YOUR RAILS APP CODE #########################
 #WORKDIR /usr/src/apollo
 #COPY . /usr/src/apollo
 #RUN rm -rf /usr/src/apollo/log && mkdir /usr/src/apollo/log
@@ -108,6 +111,8 @@ RUN rm -f /usr/src/scripts/Gemfile*
 # RUN bundle exec rake assets:precompile RAILS_ENV=production
 # RUN bundle install
 #RUN chmod -R 777 /usr/src/apollo
+
+############### COPY YOUR RAILS APP CODE #########################
 
 RUN mkdir -p /var/log/nginx/
 COPY webapp.conf /etc/nginx/nginx.conf
